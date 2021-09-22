@@ -148,6 +148,18 @@ class Users(models.Model):
     userloginname = models.CharField(db_column='userLoginName', max_length=20, blank=True, null=True)  # Field name made lowercase.
     userpass = models.CharField(db_column='userPass', max_length=20, blank=True, null=True)  # Field name made lowercase.
     memo = models.CharField(max_length=20, blank=True, null=True)
+    # def __init__(self):
+    #     self.userid = this.userid
+    #     self.username = this.username
+    #     self.usertel = this.usertel
+    #     self.userage = this.userage
+    #     self.userbirth = this.userbirth.strftime('%Y%m%d')
+    #     self.userdepart = this.userdepart
+    #     self.userposition = this.userposition
+    #     self.userloginname = this.userloginname
+    #     self.userpass = this.userpass
+    #     self.memo = this.memo
+
 
     class Meta:
         managed = False

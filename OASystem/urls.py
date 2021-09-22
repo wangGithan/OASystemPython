@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from employee import views
+from django.views.generic import TemplateView
 
 
 urlpatterns = [
@@ -22,5 +24,8 @@ urlpatterns = [
     path('users/', include('employee.urls')),
     path('login/', include('login.urls')),
     #path('login_form/', include('login.urls')),
+    #关联vue
+    path("", TemplateView.as_view(template_name="Index.html"), name="Index")
+
 
 ]
