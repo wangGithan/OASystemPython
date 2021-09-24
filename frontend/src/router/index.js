@@ -4,6 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 import UserList from '@/components/UserList'
 import AddUser from '@/components/AddUser'
 import MyPage from '@/components/MyPage'
+import ChangeUser from '@/components/ChangeUser'
 
 Vue.use(Router)
 
@@ -33,6 +34,12 @@ export default new Router({
       name: 'AddUser',
       component: AddUser
       //http://localhost:8080/#/AddUser
+    },
+
+    {
+      path: '/ChangeUser',
+      name: 'ChangeUser',
+      component: ChangeUser
     }
   ]
 })

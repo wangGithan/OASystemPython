@@ -1,11 +1,12 @@
 <template>
-  <div id="content" class="addUser">
-    <el-form ref="form" :model="form" label-width="80px" :rules="addFormRules">
+  <div id="content" class="editUser" v-if="user">
+    <el-form ref="form" :model="user" label-width="80px" :rules="addFormRules">
+      <el-input type="hidden" v-model="user.userid"></el-input>
       <el-form-item label="姓名" class="label" prop="username">
-        <el-input class="input" v-model="form.username"></el-input>
+        <el-input class="input" v-model="user.username"></el-input>
       </el-form-item>
       <el-form-item label="电话" class="label" prop="usertel">
-        <el-input class="input" v-model="form.usertel"></el-input>
+        <el-input class="input" v-model="user.usertel"></el-input>
       </el-form-item>
       <el-form-item label="生日" class="label" prop="userbirth">
         <el-col :span="11">
@@ -13,38 +14,45 @@
             class="input"
             type="date"
             placeholder="选择日期"
-            :picker-options="dateOption"
             default-value="2000-01-01"
-            v-model="form.userbirth"
+            :picker-options="dateOption"
+            v-model="user.userbirth"
           ></el-date-picker>
         </el-col>
       </el-form-item>
       <el-form-item label="部门" class="label" prop="userdepart">
         <el-select
           class="input"
-          v-model="form.userdepart"
+          v-model="user.userdepart"
           placeholder="请选择部门"
         >
-          <el-option label="营业部" value="1"></el-option>
-          <el-option label="后勤部" value="2"></el-option>
-          <el-option label="管理部" value="3"></el-option>
+          <el-option
+            v-for="item in departs"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          >
+          </el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="职位" class="label" prop="userposition">
         <el-select
           class="input"
-          v-model="form.userposition"
+          v-model="user.userposition"
           placeholder="请选择职位"
         >
-          <el-option label="经理" value="1"></el-option>
-          <el-option label="组长" value="2"></el-option>
-          <el-option label="员工" value="3"></el-option>
+          <el-option
+            v-for="item in positions"
+            :key="item.value"
+            :value="item.value"
+            :label="item.label"
+          ></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="登录名" class="label" prop="userloginname">
         <el-input
           class="input"
-          v-model="form.userloginname"
+          v-model="user.userloginname"
           placeholder="2-10位英文数字"
         ></el-input>
       </el-form-item>
@@ -52,15 +60,15 @@
         <el-input
           placeholder="长度大于6位"
           class="input"
-          v-model="form.userpass"
+          v-model="user.userpass"
           show-password
         ></el-input>
       </el-form-item>
       <el-form-item label="备注" class="label" prop="memo">
-        <el-input class="input" v-model="form.memo"></el-input>
+        <el-input class="input" v-model="user.memo"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="addUser()">立即创建</el-button>
+        <el-button type="primary" @click="editUser()">修改</el-button>
         <el-button>取消</el-button>
       </el-form-item>
     </el-form>
@@ -69,7 +77,7 @@
 
 <script>
 export default {
-  name: "AddUser",
+  name: "user",
   data() {
     //自定义验证
     var checkMobile = (rule, value, callback) => {
@@ -105,17 +113,8 @@ export default {
       }
     };
 
-    // var checkEmail = (rule, value, cb) => {
-    //   const regEmail =
-    //     /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
-    //   if (regEmail.test(value)) {
-    //     // 合法的邮箱
-    //     return cb();
-    //   }
-    //   cb(new Error("请输入合法的邮箱"));
-    // };
     return {
-      form: {
+      user: {
         username: "",
         usertel: "",
         userbirth: "",
@@ -124,7 +123,36 @@ export default {
         userloginname: "",
         userpass: "",
         memo: "",
+        userid: "",
       },
+      departs: [
+        {
+          value: 1,
+          label: "营业部",
+        },
+        {
+          value: 2,
+          label: "后勤部",
+        },
+        {
+          value: 3,
+          label: "管理部",
+        },
+      ],
+      positions: [
+        {
+          value: 1,
+          label: "经理",
+        },
+        {
+          value: 2,
+          label: "组长",
+        },
+        {
+          value: 3,
+          label: "员工",
+        },
+      ],
       //验证
       addFormRules: {
         username: [{ required: true, message: "必须项", trigger: "blur" }],
@@ -157,39 +185,53 @@ export default {
       },
     };
   },
-  mounted: function () {
-
+  created: function () {
+    this.showUsers();
   },
   methods: {
-    addUser() {
-      //验证用户输入的数据
+    
+    editUser() {
       this.$refs["form"].validate((valid) => {
         if (!valid) {
           return;
         } else {
           //JSON.stringify会造成日期格式的数据错误
           //日期先转换为string，后台再改为日期格式可以避免
-         this.form.userbirth = this.form.userbirth.toString();
-          let formData = JSON.stringify(this.form);
-          console.log(formData)
+         this.user.userbirth = this.user.userbirth.toString();
+          let formData = JSON.stringify(this.user);
           this.$http
-            .post("http://127.0.0.1:8000/users/add_user/", formData, {
+            .post("http://127.0.0.1:8000/users/edit_user/", formData, {
               emulateJSON: true,
             })
             .then((response) => {
               var res = JSON.parse(response.bodyText);
               if (res.error_num === 0) {
-                this.$message.error("新增用户成功");
+                this.$message.error("修改用户成功");
                 //清除表单
-                this.$refs["form"].resetFields();
+                //this.$refs["form"].resetFields();
+                let obj = this.user;
+                for(let k in obj){
+                obj[k]=""
+                }
               } else {
-                this.$message.error("新增用户失败，请重试");
+                this.$message.error("修改用户失败，请重试");
                 console.log(res["msg"]);
                 console.log(response);
               }
             });
         }
       });
+    },
+    showUsers() {
+      var res = JSON.parse(this.$route.params.user);
+      if (res.error_num === 0) {
+        console.log(res["list"]);
+        this.user = res["list"][0]["fields"];
+        this.user.userid = res["list"][0]["pk"];
+      } else {
+        this.$message.error("获取用户失败");
+        console.log(res["msg"]);
+      }
     },
   },
 };

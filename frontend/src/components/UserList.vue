@@ -6,16 +6,17 @@
         placeholder="请输入用户名"
         style="display: inline-table; width: 30%; float: left"
       ></el-input>
-      <el-button
-        type="primary"
-        @click="searchUser()"
-        style="float: left; margin: 2px"
-        >查询</el-button
-      >
+      <el-button type="primary" @click="searchUser()" style="float: left; margin: 2px">查询</el-button>
     </el-row>
     <el-row>
       <el-table :data="userList" style="width: 100%" border>
-        <el-table-column prop="id" label="编号" min-width="100">
+        <el-table-column label="操作" min-width="100" >
+          <template slot-scope="scope">
+          <el-button type="primary" style="width:5px;float:left" icon="el-icon-edit" @click="editUser(scope.row.pk)"></el-button>
+          <el-button type="danger" style="width:5px;float:right" icon="el-icon-delete" @click="delUser(scope.row.pk)"></el-button>
+          </template>
+        </el-table-column>
+        <el-table-column prop="userid" label="编号" min-width="70">
           <template slot-scope="scope"> {{ scope.row.pk }} </template>
         </el-table-column>
         <el-table-column prop="user_name" label="姓名" min-width="100">
@@ -28,7 +29,7 @@
             {{ scope.row.fields.usertel }}
           </template>
         </el-table-column>
-        <el-table-column prop="user_age" label="年龄" min-width="100">
+        <el-table-column prop="user_age" label="年龄" min-width="50">
           <template slot-scope="scope">
             {{ scope.row.fields.userage }}
           </template>
@@ -132,6 +133,16 @@ export default {
       });
       return list;
     },
+    editUser(id){
+      this.$http.get("http://127.0.0.1:8000/users/edit_user/?userid="+id).then((response) => {
+        this.$router.push({
+          name:'ChangeUser',
+          params:{
+            user:response.bodyText
+          }
+        })
+      });
+    },
   },
 };
 </script>
@@ -161,8 +172,8 @@ a {
   margin-right: 10px;
 }
 #content {
-  width: 1200px;
-  margin-left: 50px;
+  width: 1250px;
+  margin-left: 30px;
   margin-top: 20px;
 }
 </style>

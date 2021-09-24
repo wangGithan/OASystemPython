@@ -2,51 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="377ac768-4443-4581-bf35-c450776f01ba" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/.babelrc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/.editorconfig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/.eslintignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/.eslintrc.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/.postcssrc.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/build/build.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/build/check-versions.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/build/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/build/utils.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/build/vue-loader.conf.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/build/webpack.base.conf.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/build/webpack.dev.conf.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/build/webpack.prod.conf.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/config/dev.env.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/config/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/config/prod.env.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/config/test.env.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/App.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/Template.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/assets/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/AddUser.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/HelloWorld.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/MyPage.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/UserList.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/router/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/static/.gitkeep" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/test/unit/.eslintrc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/test/unit/jest.conf.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/test/unit/setup.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/test/unit/specs/HelloWorld.spec.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OASystem/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/OASystem/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OASystem/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/OASystem/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/employee/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/employee/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/employee/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/employee/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/employee/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/employee/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/login/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/AddUser.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/AddUser.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/UserList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/readme.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -205,6 +167,7 @@
       <configuration name="PythonConfigurationType">
         <watch expression="request.user" />
         <watch expression="user" />
+        <watch expression="e.args[0]" language="Python" />
       </configuration>
     </watches-manager>
   </component>
