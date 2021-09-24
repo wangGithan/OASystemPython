@@ -29,4 +29,6 @@ git branch -a    查看本地和远程的所有分支
 git branch       查看本地分支
 git diff localbranch remotebranch   查看本地分支和远程分支的差异 git diff master origin/master
 
+.gitignore　　　　git rm --cached -r employee/__pycache__
+
 
