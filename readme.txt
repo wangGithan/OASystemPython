@@ -25,8 +25,8 @@ git push origin xxx （xxx为要提交代码的分支名称）
 7.如果git push这个步骤出现了错误，是因为是git服务器中的你提交的文件不在本地代码目录中，可以通过如下命令进行代码合并，然后在使用第6步
 git pull --rebase origin xxx（xxx为要提交代码的分支名称）
 
-
-
-
+git branch -a    查看本地和远程的所有分支
+git branch       查看本地分支
+git diff localbranch remotebranch   查看本地分支和远程分支的差异 git diff master origin/master
 
 
