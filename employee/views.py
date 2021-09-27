@@ -30,13 +30,17 @@ def add_user(request):
             postBody = request.body
             user = json.loads(postBody)
             print(type(user))  #dic
-            user['userbirth'] = getBirth(user['userbirth'])
-            user['userage'] = getAge(user['userbirth'])
-            #添加user到数据库
-            create = Users.objects.create(**user)  #加了两个星号 ** 的参数会以字典的形式导入。
-            print(create.pk)
-            response['msg'] = 'success'
-            response['error_num'] = 0
+            if(check_Login_Name(user['userloginname'], '')):
+                user['userbirth'] = getBirth(user['userbirth'])
+                user['userage'] = getAge(user['userbirth'])
+                #添加user到数据库
+                create = Users.objects.create(**user)  #加了两个星号 ** 的参数会以字典的形式导入。
+                print(create.pk)
+                response['msg'] = 'success'
+                response['error_num'] = 0
+            else:
+                response['msg'] = 'loginNameWrong'
+                response['error_num'] = 2
     except Exception as e:
         response['msg'] = str(e)
         response['error_num'] = 1
@@ -80,13 +84,17 @@ def edit_user(request):
             postBody = request.body
             user = json.loads(postBody)
             print(type(user))  # dic
-            user['userbirth'] = getBirth(user['userbirth'])
-            user['userage'] = getAge(user['userbirth'])
-            # 添加user到数据库
-            #create = Users.objects.create(**user)  # 加了两个星号 ** 的参数会以字典的形式导入。
-            update = Users.objects.filter(userid=user['userid']).update(**user)
-            response['msg'] = 'success'
-            response['error_num'] = 0
+            if (check_Login_Name(user['userloginname'], user['userid'])):
+                user['userbirth'] = getBirth(user['userbirth'])
+                user['userage'] = getAge(user['userbirth'])
+                # 添加user到数据库
+                #create = Users.objects.create(**user)  # 加了两个星号 ** 的参数会以字典的形式导入。
+                update = Users.objects.filter(userid=user['userid']).update(**user)
+                response['msg'] = 'success'
+                response['error_num'] = 0
+            else:
+                response['msg'] = 'loginNameWrong'
+                response['error_num'] = 2
         except Exception as e:
             response['msg'] = str(e)
             response['error_num'] = 1
@@ -99,6 +107,7 @@ def del_user(request):
     response = {}
     try:
         userid = request.GET.get('userid')
+        #get只能获取一条数据 获取不到或者获取到多条则报错 filter可以获取多条 查询不到数据，会返回一个空的查询集
         obj = Users.objects.get(userid=userid)
         obj.delete()
         response['msg'] = 'success'
@@ -152,3 +161,21 @@ def getAge(birthDay):
     else:
         age = today.year - birthDay.year - 1
     return age
+
+
+def check_Login_Name(loginName, userid):
+    obj = Users.objects.filter(userloginname=loginName)
+    print(type(obj))
+    if obj.exists():
+        if userid != '':
+            print(obj.count() == 1)
+            print(obj[0].userid == userid)
+            print(obj[0].userid)
+            print(userid)
+            if obj.count() == 1 and obj[0].userid == userid:
+                return 1
+            else:
+                return 0
+        else:
+            return 0
+    return 1

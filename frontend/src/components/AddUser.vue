@@ -61,7 +61,7 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="addUser()">立即创建</el-button>
-        <el-button>取消</el-button>
+        <el-button @click="cancel()">取消</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -181,12 +181,23 @@ export default {
                 this.$message.error("新增用户成功");
                 //清除表单
                 this.$refs["form"].resetFields();
-              } else {
+              }else if(res.error_num === 2) {
+                this.$message.error("用户名已存在");
+              }else{
                 this.$message.error("新增用户失败，请重试");
               }
             });
         }
       });
+    },
+    cancel(){
+      this.$http
+        .get("http://127.0.0.1:8000/users/")
+        .then((response) => {
+          this.$router.push({
+            name: "UserList",
+          });
+        });
     },
   },
 };

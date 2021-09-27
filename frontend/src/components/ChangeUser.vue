@@ -69,7 +69,7 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="editUser()">修改</el-button>
-        <el-button>取消</el-button>
+        <el-button @click="cancel()">取消</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -213,7 +213,9 @@ export default {
                 for(let k in obj){
                 obj[k]=""
                 }
-              } else {
+              }else if(res.error_num === 2) {
+                this.$message.error("用户名已存在");
+              }else{
                 this.$message.error("修改用户失败，请重试");
               }
             });
@@ -228,6 +230,15 @@ export default {
       } else {
         this.$message.error("获取用户失败");
       }
+    },
+    cancel(){
+      this.$http
+        .get("http://127.0.0.1:8000/users/")
+        .then((response) => {
+          this.$router.push({
+            name: "UserList",
+          });
+        });
     },
   },
 };
