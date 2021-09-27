@@ -40,6 +40,8 @@ export default new Router({
       path: '/ChangeUser',
       name: 'ChangeUser',
       component: ChangeUser
-    }
+    },
+
+    
   ]
 })

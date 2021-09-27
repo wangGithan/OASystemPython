@@ -6,14 +6,30 @@
         placeholder="请输入用户名"
         style="display: inline-table; width: 30%; float: left"
       ></el-input>
-      <el-button type="primary" @click="searchUser()" style="float: left; margin: 2px">查询</el-button>
+      <el-button
+        type="primary"
+        @click="searchUser()"
+        style="float: left; margin: 2px"
+        >查询</el-button
+      >
     </el-row>
     <el-row>
       <el-table :data="userList" style="width: 100%" border>
-        <el-table-column label="操作" min-width="100" >
+        <el-table-column label="操作" min-width="100">
           <template slot-scope="scope">
-          <el-button type="primary" style="width:5px;float:left" icon="el-icon-edit" @click="editUser(scope.row.pk)"></el-button>
-          <el-button type="danger" style="width:5px;float:right" icon="el-icon-delete" @click="delUser(scope.row.pk)"></el-button>
+            <el-button
+              type="primary"
+              style="width: 5px; float: left"
+              icon="el-icon-edit"
+              @click="editUser(scope.row.pk)"
+            ></el-button>
+            <el-button
+              type="danger"
+              style="width: 5px; float: right"
+              icon="el-icon-delete"
+              @click="delUser(scope.row.pk)"
+              >点击打开 Message Box</el-button
+            >
           </template>
         </el-table-column>
         <el-table-column prop="userid" label="编号" min-width="70">
@@ -91,21 +107,18 @@ export default {
             this.userList = list;
           } else {
             this.$message.error("查询用户失败，请重试");
-            console.log(res["msg"]);
           }
         });
     },
     showUsers() {
       this.$http.get("http://127.0.0.1:8000/users/").then((response) => {
         var res = JSON.parse(response.bodyText);
-        console.log(res);
         if (res.error_num === 0) {
           var list = this.getDepartName(res["list"]);
           list = this.getPosition(list);
           this.userList = list;
         } else {
           this.$message.error("查询用户失败");
-          console.log(res["msg"]);
         }
       });
     },
@@ -133,15 +146,47 @@ export default {
       });
       return list;
     },
-    editUser(id){
-      this.$http.get("http://127.0.0.1:8000/users/edit_user/?userid="+id).then((response) => {
-        this.$router.push({
-          name:'ChangeUser',
-          params:{
-            user:response.bodyText
-          }
+    editUser(id) {
+      this.$http
+        .get("http://127.0.0.1:8000/users/edit_user/?userid=" + id)
+        .then((response) => {
+          this.$router.push({
+            name: "ChangeUser",
+            params: {
+              user: response.bodyText,
+            },
+          });
+        });
+    },
+    delUser(id) {
+      this.$confirm("此操作将永久删除该用户, 是否继续?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
+      })
+        .then(() => {
+          this.$http
+            .get("http://127.0.0.1:8000/users/del_user/?userid=" + id)
+            .then((response) => {
+              var res = JSON.parse(response.bodyText);
+              if (res.error_num === 0) {
+                this.$message({
+                  type: "success",
+                  message: "删除成功!",
+                });
+                this.showUsers();
+                this.reload;
+              } else {
+                this.$message.error("删除用户失败");
+              }
+            });
         })
-      });
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消删除",
+          });
+        });
     },
   },
 };

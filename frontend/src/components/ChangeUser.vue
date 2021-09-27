@@ -215,8 +215,6 @@ export default {
                 }
               } else {
                 this.$message.error("修改用户失败，请重试");
-                console.log(res["msg"]);
-                console.log(response);
               }
             });
         }
@@ -225,12 +223,10 @@ export default {
     showUsers() {
       var res = JSON.parse(this.$route.params.user);
       if (res.error_num === 0) {
-        console.log(res["list"]);
         this.user = res["list"][0]["fields"];
         this.user.userid = res["list"][0]["pk"];
       } else {
         this.$message.error("获取用户失败");
-        console.log(res["msg"]);
       }
     },
   },

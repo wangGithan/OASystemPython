@@ -171,7 +171,6 @@ export default {
           //日期先转换为string，后台再改为日期格式可以避免
          this.form.userbirth = this.form.userbirth.toString();
           let formData = JSON.stringify(this.form);
-          console.log(formData)
           this.$http
             .post("http://127.0.0.1:8000/users/add_user/", formData, {
               emulateJSON: true,
@@ -184,8 +183,6 @@ export default {
                 this.$refs["form"].resetFields();
               } else {
                 this.$message.error("新增用户失败，请重试");
-                console.log(res["msg"]);
-                console.log(response);
               }
             });
         }

@@ -19,15 +19,8 @@ def employee(request):
     except Exception as e:
         response['msg'] = str(e)
         response['error_num'] = 1
-        print(response)
     # return render(request, 'user.html', {"user_queryset": user_queryset})
     return JsonResponse(response)
-
-
-def user_list(request):
-    # user_queryset = Users.objects.all()
-    # return render(request, 'user.html', {"user_queryset": user_queryset})
-    print('oo')
 
 
 def add_user(request):
@@ -100,6 +93,21 @@ def edit_user(request):
 
 
     return JsonResponse(response)
+
+
+def del_user(request):
+    response = {}
+    try:
+        userid = request.GET.get('userid')
+        obj = Users.objects.get(userid=userid)
+        obj.delete()
+        response['msg'] = 'success'
+        response['error_num'] = 0
+    except Exception as e:
+        response['msg'] = str(e)
+        response['error_num'] = 1
+    return JsonResponse(response)
+
 
 def getBirth(birthYear):
     #Thu Jun 23 1983 00:00:00 GMT+0900 (日本标准时间)
