@@ -168,10 +168,6 @@ def check_Login_Name(loginName, userid):
     print(type(obj))
     if obj.exists():
         if userid != '':
-            print(obj.count() == 1)
-            print(obj[0].userid == userid)
-            print(obj[0].userid)
-            print(userid)
             if obj.count() == 1 and obj[0].userid == userid:
                 return 1
             else:
@@ -179,3 +175,6 @@ def check_Login_Name(loginName, userid):
         else:
             return 0
     return 1
+
+
+
