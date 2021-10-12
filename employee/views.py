@@ -177,20 +177,4 @@ def check_Login_Name(loginName, userid):
     return 1
 
 
-# def login_form(request):
-# #     response = {}
-# #     try:
-# #         request.encoding = 'utf-8'
-# #         postBody = request.body
-# #         user = json.loads(postBody)
-# #         user_queryset = Users.objects.all().filter(userloginname=user['userloginname'], userpass=user['userpass'])
-# #         if user_queryset.exists():
-# #             response['msg'] = 'success'
-# #             response['error_num'] = 0
-# #         else:
-# #             response['msg'] = 'wrong loginName or password'
-# #             response['error_num'] = 2
-# #     except Exception as e:
-# #         response['msg'] = str(e)
-# #         response['error_num'] = 1
-# #     return JsonResponse(response)
+
