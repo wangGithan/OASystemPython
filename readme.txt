@@ -57,3 +57,14 @@ git checkout .
 git参考: https://www.cnblogs.com/runnerjack/p/9342362.html
 
 
+
+現状：做了登录功能，但是没有实现登陆前隐藏侧边，上边菜单栏（vue.cli单页面的模板（上菜单，左菜单不刷新）
+实现了登陆时生成token，并且前台可以检验是否有token（关闭页面token失效）
+没有实现访问所有方法都进行token验证
+权限管理怎样实现？
+
+
+
+
+
+
