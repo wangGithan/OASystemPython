@@ -37,7 +37,7 @@
         </el-table-column>
         <el-table-column prop="user_name" label="姓名" min-width="100">
           <template slot-scope="scope">
-            {{ scope.row.fields.username }}
+            {{ scope.row.fields.username }}  
           </template>
         </el-table-column>
         <el-table-column prop="user_tel" label="电话" min-width="100">

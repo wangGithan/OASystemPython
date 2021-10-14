@@ -141,3 +141,10 @@ STATICFILES_DIRS = [
 ]
 
 
+#login.html页面css和js引入使用
+STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static/'),
+)
+
+

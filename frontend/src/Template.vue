@@ -35,10 +35,22 @@
                   ></el-menu-item
                 >
               </el-submenu>
-              <el-menu-item index="3">
-                <i class="el-icon-document"></i>
-                <span slot="title">查询用户</span>
-              </el-menu-item>
+              <el-submenu index="3">
+                <template slot="title">
+                  <i class="el-icon-location"></i>
+                  <span>学习打卡</span>
+                </template>
+                <el-menu-item index="2-1"
+                  ><router-link to="/CheckWorkTime"
+                    >查看</router-link
+                  ></el-menu-item
+                >
+                <el-menu-item index="2-2"
+                  ><router-link to="/WorkTime"
+                    >打卡</router-link
+                  ></el-menu-item
+                >
+              </el-submenu>
               <el-menu-item index="4">
                 <i class="el-icon-document"></i>
                 <span slot="title">添加用户</span>
@@ -99,9 +111,9 @@ export default {
       displayValue: "block",
     };
   },
-  mounted(){
-    this.checkLogin();
-  },
+  // mounted(){
+  //   this.checkLogin();
+  // },
   methods: {
     handleOpen(key, keyPath) {
       console.log(key, keyPath);
@@ -112,25 +124,22 @@ export default {
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
     },
-    checkLogin() {
-      let token = sessionStorage.getItem("Authorization");
-      console.log(token);
-      //不好用 单页面切换page时模板不刷新
-      // if (token === null || token === "") {
-      //   this.displayValue = "none";
-      //   return {
-      //     display: this.displayValue,
-      //   };
-      // } else {
-      //   this.displayValue = "block";
-      //   return {
-      //     display: this.displayValue,
-      //   };
-      // }
-    },
-  },
-  mounted: function () {
-    this.checkLogin();
+    // checkLogin() {
+    //   let token = sessionStorage.getItem("Authorization");
+    //   console.log(token);
+    //   //不好用 单页面切换page时模板不刷新
+    //   if (token === null || token === "") {
+    //     this.displayValue = "none";
+    //     return {
+    //       display: this.displayValue,
+    //     };
+    //   } else {
+    //     this.displayValue = "block";
+    //     return {
+    //       display: this.displayValue,
+    //     };
+    //   }
+    // },
   },
 };
 </script>

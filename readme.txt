@@ -56,6 +56,14 @@ git checkout -- filepathname
 git checkout .
 git参考: https://www.cnblogs.com/runnerjack/p/9342362.html
 
+在models.py里面先定义好要建的数据库表字段 执行以下两个命令，新建的表可以反应到数据库中
+python manage.py makemigrations
+python manage.py migrate
+
+如果你已经有已知的数据库及表格。
+运行下面代码可以自动生成models模型文件
+python manage.py inspectdb > your_app_name/models.py
+（导入之后models.py可能会出现编码错误source code string cannot contain null bytes，要把UTF-16LE改成UTF-8）
 
 
 現状：做了登录功能，但是没有实现登陆前隐藏侧边，上边菜单栏（vue.cli单页面的模板（上菜单，左菜单不刷新）
