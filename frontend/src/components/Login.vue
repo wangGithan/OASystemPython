@@ -75,7 +75,7 @@ export default {
               emulateJSON: true,
             })
             .then((response) => {
-              var res = JSON.parse(response.bodyText);
+              var res = response.data;
               if (res.error_num === 0) {
                 this.userToken = 'Bearer ' + res.token;
                 // 将用户token保存到vuex中

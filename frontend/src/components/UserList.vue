@@ -100,7 +100,7 @@ export default {
       this.$http
         .get("http://127.0.0.1:8000/users/search_user/?user_name=" + this.input)
         .then((response) => {
-          var res = JSON.parse(response.bodyText);
+          var res = response.data;
           if (res.error_num === 0) {
             var list = this.getDepartName(res["list"]);
             list = this.getPosition(list);
@@ -112,7 +112,7 @@ export default {
     },
     showUsers() {
       this.$http.get("http://127.0.0.1:8000/users/").then((response) => {
-        var res = JSON.parse(response.bodyText);
+        var res = response.data;
         if (res.error_num === 0) {
           var list = this.getDepartName(res["list"]);
           list = this.getPosition(list);
@@ -153,7 +153,7 @@ export default {
           this.$router.push({
             name: "ChangeUser",
             params: {
-              user: response.bodyText,
+              user: response.data,
             },
           });
         });
@@ -168,7 +168,7 @@ export default {
           this.$http
             .get("http://127.0.0.1:8000/users/del_user/?userid=" + id)
             .then((response) => {
-              var res = JSON.parse(response.bodyText);
+              var res = response.data;
               if (res.error_num === 0) {
                 this.$message({
                   type: "success",
