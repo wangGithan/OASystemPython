@@ -204,7 +204,7 @@ export default {
               emulateJSON: true,
             })
             .then((response) => {
-              var res = JSON.parse(response.bodyText);
+              var res = response.data;
               if (res.error_num === 0) {
                 this.$message.error("修改用户成功");
                 //清除表单
@@ -223,8 +223,9 @@ export default {
       });
     },
     showUsers() {
-      var res = JSON.parse(this.$route.params.user);
+      var res = this.$route.params.user;
       if (res.error_num === 0) {
+        console.log(res);
         this.user = res["list"][0]["fields"];
         this.user.userid = res["list"][0]["pk"];
       } else {

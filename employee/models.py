@@ -1,9 +1,3 @@
-from django.db import models
-
-# Create your models here.
-from django.db import models
-
-
 # This is an auto-generated Django model module.
 # You'll have to do the following manually to clean this up:
 #   * Rearrange models' order
@@ -128,15 +122,6 @@ class DjangoSession(models.Model):
         db_table = 'django_session'
 
 
-class EmployeeTest(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    name = models.CharField(max_length=20)
-
-    class Meta:
-        managed = False
-        db_table = 'employee_test'
-
-
 class Users(models.Model):
     userid = models.AutoField(db_column='userID', primary_key=True)  # Field name made lowercase.
     username = models.CharField(db_column='userName', max_length=20)  # Field name made lowercase.
@@ -148,18 +133,6 @@ class Users(models.Model):
     userloginname = models.CharField(db_column='userLoginName', max_length=20, blank=True, null=True)  # Field name made lowercase.
     userpass = models.CharField(db_column='userPass', max_length=20, blank=True, null=True)  # Field name made lowercase.
     memo = models.CharField(max_length=20, blank=True, null=True)
-    # def __init__(self):
-    #     self.userid = this.userid
-    #     self.username = this.username
-    #     self.usertel = this.usertel
-    #     self.userage = this.userage
-    #     self.userbirth = this.userbirth.strftime('%Y%m%d')
-    #     self.userdepart = this.userdepart
-    #     self.userposition = this.userposition
-    #     self.userloginname = this.userloginname
-    #     self.userpass = this.userpass
-    #     self.memo = this.memo
-
 
     class Meta:
         managed = False

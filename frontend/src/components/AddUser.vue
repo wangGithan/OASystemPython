@@ -176,7 +176,7 @@ export default {
               emulateJSON: true,
             })
             .then((response) => {
-              var res = JSON.parse(response.bodyText);
+              var res = response.data;
               if (res.error_num === 0) {
                 this.$message.error("新增用户成功");
                 //清除表单

@@ -63,6 +63,7 @@ export default {
   mounted: function () {},
   methods: {
     ...mapMutations(['changeLogin']),
+    ...mapMutations(['saveUserInfo']),
     login() {
       this.$refs["form"].validate((valid) => {
         if (!valid) {
@@ -74,11 +75,12 @@ export default {
               emulateJSON: true,
             })
             .then((response) => {
-              var res = JSON.parse(response.bodyText);
+              var res = response.data;
               if (res.error_num === 0) {
                 this.userToken = 'Bearer ' + res.token;
                 // 将用户token保存到vuex中
                 this.changeLogin({ Authorization: this.userToken });
+                this.saveUserInfo({ user:[res.userId, res.userName] });
                 this.$http
                   .get("http://127.0.0.1:8000/users/")
                   .then((response) => {
