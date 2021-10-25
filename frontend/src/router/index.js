@@ -5,6 +5,7 @@ import AddUser from '@/components/AddUser'
 import ChangeUser from '@/components/ChangeUser'
 import Login from '@/components/Login'
 import WorkTime from '@/components/WorkTime'
+import CheckRecord from '@/components/CheckRecord'
 
 Vue.use(Router)
 
@@ -46,6 +47,11 @@ const router = new Router({
       path: '/WorkTime',
       name: 'WorkTime',
       component: WorkTime
+    },
+    {
+      path: '/CheckRecord',
+      name: 'CheckRecord',
+      component: CheckRecord
     },
   ]
 })

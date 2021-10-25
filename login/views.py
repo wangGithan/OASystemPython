@@ -29,14 +29,14 @@ def login(request):
         except Exception as e:
             response_data['msg'] = str(e)
             response_data['error_num'] = 1
-    return HttpResponse(json.dumps(response_data), content_type="application/json")
+    return render()
+    #return HttpResponse(json.dumps(response_data), content_type="application/json")
 
 
 
 
 #OASystem/frontend/src/components/Login.vue用
 def login_form(request):
-    #response = {}
     response_data = {}
     try:
         request.encoding = 'utf-8'
@@ -57,5 +57,5 @@ def login_form(request):
     except Exception as e:
         response_data['msg'] = str(e)
         response_data['error_num'] = 1
-    #return JsonResponse(response)
+    #return render(request, 'UserList')
     return HttpResponse(json.dumps(response_data), content_type="application/json")

@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'employee',
     'login',
+    'record',
     #注册允许cors跨域app
     'corsheaders',
 
@@ -138,13 +139,15 @@ CORS_ORIGIN_ALLOW_ALL = True
 # Add for vuejs #关联vue
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "frontend/dist/static"),
+    os.path.join(BASE_DIR, 'static/'),
 ]
 
 
-#login.html页面css和js引入使用
-STATIC_URL = '/static/'
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static/'),
-)
+# #login.html页面css和js引入使用
+# STATIC_URL = '/static/'
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, 'static/'),
+#     os.path.join(BASE_DIR, 'frontend/dist/'),
+# )
 
 

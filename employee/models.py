@@ -137,17 +137,3 @@ class Users(models.Model):
     class Meta:
         managed = False
         db_table = 'users'
-
-
-class WorkTime(models.Model):
-    userid = models.IntegerField(db_column='userID')  # Field name made lowercase.
-    work_date = models.DateField(blank=True, null=True)
-    check_in1 = models.CharField(max_length=20, blank=True, null=True)
-    check_out1 = models.CharField(max_length=20, blank=True, null=True)
-    check_in2 = models.CharField(max_length=20, blank=True, null=True)
-    check_out2 = models.CharField(max_length=20, blank=True, null=True)
-    total = models.CharField(max_length=20, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'work_time'

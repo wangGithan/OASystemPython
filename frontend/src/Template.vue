@@ -41,7 +41,7 @@
                   <span>学习打卡</span>
                 </template>
                 <el-menu-item index="2-1"
-                  ><router-link to="/CheckWorkTime"
+                  ><router-link to="/CheckRecord"
                     >查看</router-link
                   ></el-menu-item
                 >
